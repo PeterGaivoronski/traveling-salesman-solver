@@ -11,7 +11,13 @@ var start_time = Date.now();
 
 //construct problem
 
-var map = [], problem_size = process.argv[2] || 10;
+var 
+map = [], 
+problem_size = parseInt(process.argv[2] || 10),
+x_size = parseInt(process.argv[3] || 10),
+y_size = parseInt(process.argv[4] || 10);
+
+console.info("Generating problem with "+problem_size+" nodes with x between 0 and "+x_size+" and y between 0 and "+y_size)
 
 var newX, newY;
 
@@ -26,8 +32,8 @@ var checkMapDuplicate = function(x, y){
 for (var i = 0; i < problem_size; i++) {
 
 	while(checkMapDuplicate(newX, newY)){
-		newX = helpers.intRand(0, 10)
-		newY = helpers.intRand(0, 10)
+		newX = helpers.intRand(0, x_size)
+		newY = helpers.intRand(0, y_size)
 	}
 
 	map.push({
@@ -38,11 +44,6 @@ for (var i = 0; i < problem_size; i++) {
 		l: {}
 	})
 }
-
-map.forEach(function(point){
-	point.x *= 10;
-	point.y *= 10;
-})
 
 //Or feed in an existing problem
 
@@ -325,26 +326,19 @@ solutions.sort(function(a, b){
 	return a.finalSum - b.finalSum;
 })
 
+// Remove all solutions that are not equal to the best
 solutions.forEach(function(solution, index){
 	if(solution.finalSum !== solutions[0].finalSum){
 		solutions.splice(solutions.indexOf(solution), 1)
 	}
 })
 
-solutions[0].path.sort(function(a,b){
-	return a.i - b.i;
+solutions.forEach(function(solution, sindex){
+	console.info("solution ", sindex, ":")
+	solution.path.forEach(function(point, index){
+		console.info(index + " -> " + point.x +", "+point.y)
+	})
+	console.info(solution.finalSum)
 })
-
-solutions[0].path.forEach(function(point){
-	console.info(point.i + " -> " + point.x +", "+point.y)
-})
-
-console.info(solutions[0].finalSum)
-// solutions.forEach(function(solution){
-// 	console.info(solution.finalSum)
-// 	solution.path.forEach(function(element){
-// 		console.info(element.i, element.x, element.y);
-// 	})
-// })
 
 console.info("DONE. TOOK: ", Date.now() - start_time, "ms")

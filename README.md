@@ -15,10 +15,10 @@ npm install
 
 ## Running
 
-Generate a random problem and solve it:
+Generate a random problem with n (x, y) nodes between 0 and x_size/0 and y_size and solve it:
 
 ```
-./salesman_solver.js [node_count]
+./salesman_solver.js [node_count] [x_size] [y_size]
 ```
 
 Or you can feed an existing problem into it by uncommenting the appropriate code block in salesman_solver.js.
