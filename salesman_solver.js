@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 if(require){
 	var helpers = require('./salesman_helpers.js')
 	var fs = require('fs')
