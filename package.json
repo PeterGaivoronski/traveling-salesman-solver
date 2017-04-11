@@ -1,0 +1,8 @@
+{
+  "name": "traveling-salesman-solver",
+  "version": "0.0.1",
+  "main": "salesman-solver.js",
+  "dependencies": {
+    "hull.js": "https://github.com/AndriiHeonia/hull/tarball/master"
+  }
+} 
